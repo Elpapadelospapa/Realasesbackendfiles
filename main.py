@@ -5,7 +5,7 @@ import requests
 import os
 
 app = Flask(__name__)
-CORS(app)  # Permite solicitudes desde tu frontend
+CORS(app, origins=["https://realasesbackendfiless.onrender.com", "null"])   # Permite solicitudes desde tu frontend
 
 # Obtener el token directamente del entorno de Render
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -55,3 +55,4 @@ def send_telegram_message():
 if __name__ == '__main__':
     # Usa el puerto que Render asigna automáticamente
     app.run(host='0.0.0.0', port=PORT, debug=False)
+
