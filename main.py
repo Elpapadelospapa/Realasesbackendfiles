@@ -5,7 +5,7 @@ import os
 app = FastAPI()
 
 # Solo el BOT_TOKEN en variables de entorno
-BOT_TOKEN = os.environ.get("8260241544:AAHEZVoZZqLl1ZqclkvsfH6_D6JLBhyUDfQ")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 bot = Bot(token=BOT_TOKEN)
 
 # Chat ID hardcodeado (pero puedes cambiarlo según tu necesidad)
@@ -26,3 +26,4 @@ async def enviar_mensaje(mensaje: dict):
 async def root():
 
     return {"mensaje": "Backend funcionando en Railway"}
+
