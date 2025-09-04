@@ -9,7 +9,7 @@ BOT_TOKEN = os.environ.get("8260241544:AAHEZVoZZqLl1ZqclkvsfH6_D6JLBhyUDfQ")
 bot = Bot(token=BOT_TOKEN)
 
 # Chat ID hardcodeado (pero puedes cambiarlo según tu necesidad)
-CHAT_ID = "1234567890"  # Reemplaza con TU chat ID real
+CHAT_ID = "7924619096"  # Reemplaza con TU chat ID real
 
 @app.post("/enviar-mensaje")
 async def enviar_mensaje(mensaje: dict):
@@ -24,4 +24,5 @@ async def enviar_mensaje(mensaje: dict):
 
 @app.get("/")
 async def root():
+
     return {"mensaje": "Backend funcionando en Railway"}
