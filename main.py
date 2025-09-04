@@ -10,9 +10,6 @@ CORS(app)  # Permite solicitudes desde tu frontend
 # Obtener el token directamente del entorno de Render
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-# Render automáticamente te da el puerto
-PORT = int(os.environ.get("PORT", 5000))
-
 # Verifica que el token esté definido
 if not BOT_TOKEN:
     raise RuntimeError("Error: La variable de entorno BOT_TOKEN no está definida en Render.")
@@ -52,6 +49,8 @@ def send_telegram_message():
         print(f"Error interno del servidor: {e}")
         return jsonify({"success": False, "error": "Error interno del servidor."}), 500
 
-if __name__ == '__main__':
-    # Usa el puerto que Render asigna automáticamente
-    app.run(host='0.0.0.0', port=PORT, debug=False)
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
+
