@@ -46,7 +46,11 @@ def send_telegram_message():
         return jsonify({"success": True, "message": "Mensaje enviado."}), 200
 
     except requests.exceptions.RequestException as e:
+        # Aquí hemos mejorado el manejo de errores para imprimir el mensaje de la API de Telegram
         print(f"Error al enviar mensaje a Telegram: {e}")
+        if e.response is not None:
+            print(f"Respuesta de la API de Telegram: {e.response.text}")
+            return jsonify({"success": False, "error": f"Error de la API de Telegram: {e.response.text}"}), 500
         return jsonify({"success": False, "error": "Error al comunicarse con la API de Telegram."}), 500
     except Exception as e:
         print(f"Error interno del servidor: {e}")
