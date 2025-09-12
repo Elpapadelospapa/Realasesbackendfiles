@@ -1,11 +1,11 @@
-# app.py
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import os
 
 app = Flask(__name__)
-CORS(app) # Permite solicitudes desde tu frontend
+# Configura CORS para permitir solicitudes desde cualquier origen
+CORS(app, origins="*")
 
 # Obtener el token directamente del entorno de Render
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -55,5 +55,3 @@ def send_telegram_message():
 if __name__ == '__main__':
     # Usa el puerto que Render asigna automáticamente
     app.run(host='0.0.0.0', port=PORT, debug=False)
-
-
