@@ -38,8 +38,8 @@ def send_telegram_message():
             'parse_mode': 'HTML'
         }
 
-        # Envía la solicitud a la API de Telegram
-        response = requests.post(telegram_url, json=payload)
+        # Envía la solicitud a la API de Telegram con un timeout de 30 segundos
+        response = requests.post(telegram_url, json=payload, timeout=30)
         response.raise_for_status()
 
         print("Mensaje enviado a Telegram correctamente.")
