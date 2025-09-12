@@ -56,6 +56,19 @@ def send_telegram_message():
         print(f"Error interno del servidor: {e}")
         return jsonify({"success": False, "error": "Error interno del servidor."}), 500
 
+@app.route('/api/test-connection', methods=['GET'])
+def test_connection():
+    """
+    Prueba la conexión a un dominio externo para diagnosticar problemas de red.
+    """
+    try:
+        requests.get("https://www.google.com", timeout=10)
+        print("Conexión de red a Google exitosa.")
+        return jsonify({"success": True, "message": "Conexión de red exitosa a Google. El problema no es la red de Render."})
+    except Exception as e:
+        print(f"Error en la prueba de conexión: {e}")
+        return jsonify({"success": False, "error": f"Falla en la conexión de red: {e}"})
+
 if __name__ == '__main__':
     # Usa el puerto que Render asigna automáticamente
     app.run(host='0.0.0.0', port=PORT, debug=False)
